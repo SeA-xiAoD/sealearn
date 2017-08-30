@@ -3,7 +3,7 @@ from sealearn.txt2matrix import txt2matrix
 
 s = kNN()
 
-inputfile = '../data/kNN/datingTestSet.txt'
+inputfile = 'data/kNN/datingTestSet.txt'
 m = txt2matrix(inputfile)
 X = m[:,:-1]
 y = m[:,-1]

@@ -8,16 +8,16 @@ def txt2matrix(filename, split_symble='\t'):
     f = open(filename)
     line = f.readline() # read one line to count number of features
     line = line.strip()
-    lineForm = line.split(split_symble)
-    featureNumbers = len(lineForm) # feature number of matrix
-    lineNumbers = len(f.readlines()) + 1 # line number of matrix
+    line_form = line.split(split_symble)
+    feature_numbers = len(line_form) # feature number of matrix
+    line_numbers = len(f.readlines()) + 1 # line number of matrix
 
     f = open(filename)
     index = 0
-    matrix = zeros((lineNumbers, featureNumbers))
+    matrix = zeros((line_numbers, feature_numbers))
     for line in f.readlines():
         line = line.strip()
-        lineForm = line.split(split_symble)
-        matrix[index, :] = lineForm[:]
+        line_form = line.split(split_symble)
+        matrix[index, :] = line_form[:]
         index += 1
     return matrix

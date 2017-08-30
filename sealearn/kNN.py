@@ -25,10 +25,10 @@ class kNN():
 
     def featureScaling(self, X):
         '''Feature Scaling utilize (x-min)/(max-min). Return X after scaling.'''
-        minValue = X.min(0)
-        maxValue = X.max(0)
-        self.range = maxValue - minValue
-        self.min = minValue
+        min_value = X.min(0)
+        max_value = X.max(0)
+        self.range = max_value - min_value
+        self.min = min_value
         m = X.shape[0]
         new_X = X - tile(self.min, (m, 1))
         new_X = new_X / tile(self.range, (m, 1))
@@ -47,18 +47,18 @@ class kNN():
             return
         # first, normalize the input features
         new_fsed_X = (new_X - self.min)/self.range
-        diffMatrix = self.fsed_X - tile(new_fsed_X, (self.fsed_X.shape[0], 1))
+        diff_matrix = self.fsed_X - tile(new_fsed_X, (self.fsed_X.shape[0], 1))
         # second, utilize Euclidian distance to compute the distance
-        distance = (diffMatrix ** 2).sum(axis=1) ** 0.5
-        sortedDistanceIndex = distance.argsort()
+        distance = (diff_matrix ** 2).sum(axis=1) ** 0.5
+        sorted_distance_index = distance.argsort()
         # argsort function return the index of sorted array from samll to large
         voteList = {}
         for i in range(k):
-            voteLabel = self.labels[sortedDistanceIndex[i]]
+            voteLabel = self.labels[sorted_distance_index[i]]
             voteList[voteLabel] = voteList.get(voteLabel, 0) + 1
         # third, sort vote list and return the largest label
-        sortedVoteListKey = sorted(voteList.keys())
-        return sortedVoteListKey[0]
+        sorted_vote_list_key = sorted(voteList.keys())
+        return sorted_vote_list_key[0]
 
     def precision(self, k):
         '''Utilize original data to compute the precision of this model,
@@ -69,11 +69,11 @@ class kNN():
             return
         if k == 0:
             print("ERROR: The K can't be ZERO!")
-            return   
-        totalNumber = self.original_X.shape[0]
-        correctCount = 0
-        for i in range(totalNumber):
+            return
+        total_number = self.original_X.shape[0]
+        correct_count = 0
+        for i in range(total_number):
             pre = self.predict(self.original_X[i,:], k)
             if pre == self.labels[i]:
-                correctCount += 1
-        return correctCount / totalNumber * 100
+                correct_count += 1
+        return correct_count / total_number * 100
