@@ -6,24 +6,24 @@ class kNN():
         self.range = 0 # using in feature scaling
         self.min = 0 # using in feature scaling
         self.original_X  = 0 # using to record the original X
-        self.fsed_X = 0 # using to record the data after featureScaling
+        self.fsed_X = 0 # using to record the data after __featureScaling
         self.labels = 0 # using to record the labels
         print('Initializ a kNN module.')
 
     def fit(self, X, y, isScaled=False):
         '''Input X, y. X are numerical features and y are labels.'''
         if X.shape[0] != y.shape[0]:
-            print('ERROR: The number of X and y is not match.!')
+            print('ERROR: The number of X and y is not match!')
             return
         # fsed_X is X after feature scaling
         self.original_X = X
         if isScaled == False:
-            self.fsed_X = self.featureScaling(X)
+            self.fsed_X = self.__featureScaling(X)
         else:
             self.fsed_X = X
         self.labels = y
 
-    def featureScaling(self, X):
+    def __featureScaling(self, X):
         '''Feature Scaling utilize (x-min)/(max-min). Return X after scaling.'''
         min_value = X.min(0)
         max_value = X.max(0)
