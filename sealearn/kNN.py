@@ -8,7 +8,7 @@ class kNN():
         self.min = 0 # using in feature scaling
         self.original_X  = 0 # using to record the original X
         self.fsed_X = 0 # using to record the data after __featureScaling
-        self.labels = 0 # using to record the labels
+        self.original_labels = 0 # using to record the labels
         print('Initializ a kNN module.')
 
     def fit(self, X, y, isScaled=False):
@@ -22,7 +22,7 @@ class kNN():
             self.fsed_X = self.__featureScaling(X)
         else:
             self.fsed_X = X
-        self.labels = y
+        self.original_labels = y
 
     def __featureScaling(self, X):
         '''Feature Scaling utilize (x-min)/(max-min). Return X after scaling.'''
@@ -43,7 +43,7 @@ class kNN():
         if k == 0:
             print("ERROR: The K can't be ZERO!")
             return
-        if k > self.labels.shape[0]:
+        if k > self.original_labels.shape[0]:
             print("ERROR: The K is too large!")
             return
         # first, normalize the input features
@@ -55,7 +55,7 @@ class kNN():
         # argsort function return the index of sorted array from samll to large
         voteList = {}
         for i in range(k):
-            voteLabel = self.labels[sorted_distance_index[i]]
+            voteLabel = self.original_labels[sorted_distance_index[i]]
             voteList[voteLabel] = voteList.get(voteLabel, 0) + 1
         # third, sort vote list and return the largest label
         sorted_vote_list_key = sorted(voteList.items(), key=operator.itemgetter(1), reverse=True)
@@ -65,7 +65,7 @@ class kNN():
         '''Utilize original data to compute the precision of this model,
         and return the precision * 100%.
         you can choose different k to observe different precision.'''
-        if k > self.labels.shape[0]:
+        if k > self.original_labels.shape[0]:
             print("ERROR: The K is too large!")
             return
         if k == 0:
@@ -75,6 +75,6 @@ class kNN():
         correct_count = 0
         for i in range(total_number):
             pre = self.predict(self.original_X[i,:], k)
-            if pre == self.labels[i]:
+            if pre == self.original_labels[i]:
                 correct_count += 1
         return correct_count / total_number * 100
