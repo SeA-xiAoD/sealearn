@@ -1,4 +1,5 @@
 from numpy import *
+import operator
 
 class kNN():
 
@@ -57,8 +58,8 @@ class kNN():
             voteLabel = self.labels[sorted_distance_index[i]]
             voteList[voteLabel] = voteList.get(voteLabel, 0) + 1
         # third, sort vote list and return the largest label
-        sorted_vote_list_key = sorted(voteList.keys())
-        return sorted_vote_list_key[0]
+        sorted_vote_list_key = sorted(voteList.items(), key=operator.itemgetter(1), reverse=True)
+        return sorted_vote_list_key[0][0]
 
     def precision(self, k):
         '''Utilize original data to compute the precision of this model,
