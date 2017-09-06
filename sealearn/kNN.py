@@ -17,12 +17,12 @@ class kNN():
             print('ERROR: The number of X and y is not match!')
             return
         # fsed_X is X after feature scaling
-        self.original_X = X
+        self.original_X = X[:][:]
         if isScaled == False:
             self.fsed_X = self.__featureScaling(X)
         else:
             self.fsed_X = X
-        self.original_labels = y
+        self.original_labels = y[:]
         print('The model fitting is finished!')
 
     def __featureScaling(self, X):
