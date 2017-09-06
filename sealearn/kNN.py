@@ -23,6 +23,7 @@ class kNN():
         else:
             self.fsed_X = X
         self.original_labels = y
+        print('The model fitting is finished!')
 
     def __featureScaling(self, X):
         '''Feature Scaling utilize (x-min)/(max-min). Return X after scaling.'''
