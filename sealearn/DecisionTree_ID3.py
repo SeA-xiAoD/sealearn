@@ -159,9 +159,9 @@ class DecisionTree_ID3():
                     class_label = second_dict[key]
         return class_label
 
-    def precision(self):
+    def correctRate(self):
         '''Function to use original data to predict labels and compare to
-        original labels to calculate the precision * 100% of the tree.'''
+        original labels to calculate the correct rate * 100% of the tree.'''
         if self.fited_tree == 0:
             print('ERROR: The model is not fited!')
             return
