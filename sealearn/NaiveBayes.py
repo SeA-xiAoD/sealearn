@@ -81,9 +81,9 @@ class NaiveBayes():
                 max_index = i
         return max_index
 
-    def precision(self):
+    def correctRate(self):
         '''Function to predict labels of original input X, then using new labels
-        to compare with original labels, and output precision of this model'''
+        to compare with original labels, and output corret rate of this model'''
         if self.vocabulary_list == 0:
             print('ERROR: The model is not fited!')
             return
