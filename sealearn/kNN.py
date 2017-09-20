@@ -62,9 +62,9 @@ class kNN():
         sorted_vote_list_key = sorted(voteList.items(), key=operator.itemgetter(1), reverse=True)
         return sorted_vote_list_key[0][0]
 
-    def precision(self, k):
+    def correctRate(self, k):
         '''Utilize original data to compute the precision of this model,
-        and return the precision * 100%.
+        and return the correct rate * 100%.
         you can choose different k to observe different precision.'''
         if k > self.original_labels.shape[0]:
             print("ERROR: The K is too large!")
