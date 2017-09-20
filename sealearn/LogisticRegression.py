@@ -53,9 +53,9 @@ class LogisticRegression():
         new_X = mat(new_X)
         return 1 if self.__sigmoid(new_X * self.weights) >= 0.5 else 0
 
-    def precision(self):
+    def correctRate(self):
         '''Function to predict labels of original input X, then using new labels
-        to compare with original labels, and output precision of this model'''
+        to compare with original labels, and output correct rate of this model'''
         if self.weights.all() == 0:
             print('ERROR: The model is not fited!')
             return
