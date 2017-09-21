@@ -55,7 +55,7 @@ class LogisticRegression():
 
     def correctRate(self):
         '''Function to predict labels of original input X, then using new labels
-        to compare with original labels, and output correct rate of this model'''
+        to compare with original labels, and output correct rate of this model.'''
         if self.weights.all() == 0:
             print('ERROR: The model is not fited!')
             return
